@@ -1,0 +1,81 @@
+
+public class LinkedList {
+    private Node head;
+    private Node tail;
+    private int size;
+
+    public LinkedList() {
+        this.size = 0;
+    }
+    public void insertFirst(int val){
+        Node node=new Node(val);
+        node.next=head;
+        head=node;
+        if(tail==null){
+            tail=head;
+        }
+        size+=1;
+    }
+    public void insertLast(int val){
+        if(tail==null){
+            insertFirst(val);
+            return;
+        }
+        Node node=new Node(val);
+        tail.next=node;
+        node.next=null;
+        tail=node;
+        size++;
+    }
+  
+    public void display(){
+        Node temp=head;
+        while(temp!=null){
+            System.out.print(temp.value +" -> ");
+            temp=temp.next;
+        }
+        System.out.println("End");
+    }
+   // remove duplicates from sorted list
+    public void remDupicates(Node node) {
+        Node temp=head;
+        while(temp!=null &&temp.next!=null){
+            if(temp.value==temp.next.value){
+                temp.next=temp.next.next;
+            }
+            else{
+                temp=temp.next;
+            }
+        }
+    }
+
+    private class Node{
+        private int value;
+        private Node next;
+
+        public Node(int value) {
+            this.value = value;
+        }
+
+        public Node(int value, Node next) {
+            this.value = value;
+            this.next = next;
+        }
+    }
+public static void main(String[] args) {
+        LinkedList list=new LinkedList();
+   list.insertFirst(1);
+        list.insertLast(1);
+        list.insertLast(1);
+        list.insertLast(2);
+        list.insertLast(4);
+        list.insertLast(4);
+        list.remDupicates(list.head);
+        list.display();
+ }}
+/* Output:-1 -> 2 -> 4 -> End
+Conclusion:-
+This implementation of a singly linked list in Java provides basic insertion operations and a method to remove duplicates from a sorted list. 
+The remDuplicates method ensures that only unique values remain, maintaining the sorted order.
+The code effectively demonstrates linked list manipulation, making it a useful reference for learning data structures.
+*/  
